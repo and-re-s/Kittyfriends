@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap");
 
+html {
+  overflow-y: hidden;
+}
+
 h1 {
   font-family: "Dancing Script", cursive;
   font-size: 4em !important;
@@ -9,4 +13,10 @@ h1 {
 
 h2 {
   font-size: medium !important;
+}
+
+#inline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
