@@ -15,8 +15,10 @@ h2 {
   font-size: medium !important;
 }
 
-#inline {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media screen and (min-width: 540px) {
+  #inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
