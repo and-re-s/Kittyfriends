@@ -1,7 +1,13 @@
-import React from "react";
-import Card from "./Card";
+import { Kitty } from "../containers/App";
 
-const CardList = ({ kitties }) => {
+import React from "react";
+import Card from "./Card.tsx";
+
+type CardListProps = {
+  kitties: Kitty[];
+};
+
+const CardList = ({ kitties }: CardListProps) => {
   return (
     <div>
       {kitties.map((user, i) => {

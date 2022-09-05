@@ -1,20 +1,32 @@
-import React, { useState, useEffect } from "react";
-import CardList from "../components/CardList";
-import SearchBox from "../components/SearchBox";
+import React, { useState, useEffect, ChangeEvent } from "react";
+import CardList from "../components/CardList.tsx";
+import SearchBox from "../components/SearchBox.tsx";
 import Scroll from "../components/scroll";
+
+import { getData } from "../utils/data.utils.ts";
 import "./App.css";
+
+export type Kitty = {
+  id: string;
+  name: string;
+  email: string;
+};
 
 const App = () => {
   const [searchField, setSearchField] = useState("");
-  const [kitties, setKitties] = useState([]);
+  const [kitties, setKitties] = useState<Array<Kitty>>([]);
   const [filteredKitties, setFilteredKitties] = useState(kitties);
 
   console.log("render");
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((users) => setKitties(users));
+    const fetchUsers = async () => {
+      const users = await getData<Array<Kitty>>(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      setKitties(users);
+    };
+    fetchUsers();
   }, []);
 
   useEffect(() => {
@@ -24,7 +36,7 @@ const App = () => {
     setFilteredKitties(newFilteredKitties);
   }, [kitties, searchField]);
 
-  const onSearchChange = (event) => {
+  const onSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const searchFieldString = event.target.value.toLowerCase();
     setSearchField(searchFieldString);
   };
